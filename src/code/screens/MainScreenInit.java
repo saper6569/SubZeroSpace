@@ -1,5 +1,7 @@
 package code.screens;
 
+import code.environment.ChunkLoader;
+import code.environment.DefaultChunkLoader;
 import code.environment.Lighting;
 import code.player.PlayerBody;
 import code.player.PlayerMovement;
@@ -17,9 +19,7 @@ import com.jme3.scene.Spatial;
 public class MainScreenInit extends AbstractAppState {
 
     private SimpleApplication app;
-    private Spatial map;
-    private RigidBodyControl mapSpace;
-    private BulletAppState bulletAppState;
+    PlayerBody player = new PlayerBody();
 
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -28,25 +28,14 @@ public class MainScreenInit extends AbstractAppState {
         this.app.setDisplayStatView(false);
 
         PlayerMovement movement = new PlayerMovement();
-        PlayerBody player = new PlayerBody();
+        DefaultChunkLoader defaultChunkLoader = new DefaultChunkLoader();
 
         player.initialize(this.app.getRootNode());
         stateManager.attach(movement);
+        stateManager.attach(defaultChunkLoader);
+    }
 
-        map = this.app.getAssetManager().loadModel("Models/hallway.gltf");
-        map.setLocalScale(2.5f);
-        this.app.getRootNode().attachChild(map);
-
-        CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(map);
-        mapSpace = new RigidBodyControl(sceneShape, 0);
-        map.addControl(mapSpace);
-
-        this.app.getRootNode().addLight(Lighting.setupLight(ColorRGBA.White.mult(10)));
-        this.app.getRootNode.addLight(Lighting.)
-
-        bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState);
-        bulletAppState.getPhysicsSpace().add(mapSpace);
-        bulletAppState.getPhysicsSpace().add(player.getPlayer());
+    public Object getPlayer() {
+        return player.getPlayer();
     }
 }
