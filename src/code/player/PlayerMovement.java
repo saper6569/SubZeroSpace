@@ -1,5 +1,6 @@
 package code.player;
 
+import code.environment.Lighting;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -7,6 +8,9 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.light.SpotLight;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 
 public class PlayerMovement extends AbstractAppState implements ActionListener {
@@ -16,6 +20,7 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
 
     private Vector3f camDir = new Vector3f();
     private Vector3f camLeft = new Vector3f();
+    private SpotLight torch = new SpotLight();
 
     private SimpleApplication app;
 
@@ -25,6 +30,14 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
         this.app = (SimpleApplication)app;
 
         setUpKeys();
+
+        torch.setSpotRange(100f);
+        torch.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD);
+        torch.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD);
+        torch.setColor(ColorRGBA.White.mult(1.3f));
+        torch.setPosition(this.app.getCamera().getLocation());
+        torch.setDirection(this.app.getCamera().getDirection());
+        this.app.getRootNode().addLight(torch);
     }
 
     private void setUpKeys() {
@@ -56,6 +69,7 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
         else if (binding.equals("Jump") && PlayerBody.isOnGround()) {
             if (isPressed) {
                 PlayerBody.jump();
+                System.out.println(PlayerBody.getPhysicsLocation().toString());
             }
         }
     }
@@ -64,7 +78,12 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
     public void update(float tpf) {
         camDir.set(this.app.getCamera().getDirection()).multLocal(0.3f);
         camLeft.set(this.app.getCamera().getLeft()).multLocal(0.2f);
+
+        torch.setPosition(this.app.getCamera().getLocation());
+        torch.setDirection(this.app.getCamera().getDirection());
+
         walkDirection.set(0, 0, 0);
+
         if (left) {
             walkDirection.addLocal(camLeft);
         }
