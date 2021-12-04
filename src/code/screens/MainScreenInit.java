@@ -1,20 +1,13 @@
 package code.screens;
 
-import code.environment.ChunkLoader;
 import code.environment.DefaultChunkLoader;
-import code.environment.Lighting;
 import code.player.PlayerBody;
 import code.player.PlayerMovement;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.math.ColorRGBA;
-import com.jme3.scene.Spatial;
+
 
 public class MainScreenInit extends AbstractAppState {
 
