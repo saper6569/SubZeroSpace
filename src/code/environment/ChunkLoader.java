@@ -15,7 +15,21 @@ public class ChunkLoader extends AbstractAppState {
         this.app = (SimpleApplication) app;
     }
 
-    public void loadChunk() {
+    public void loadChunk(String instruction) {
+        for (int i = 0; i > instruction.length() - 1; i++){
+            if (i < 10) {
+                chunkFinder(instruction.charAt(i));
+                if (i < 3) {
+
+                    if (i < 7) {
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void chunkFinder(int CHUNK_ID) {
 
     }
 }
