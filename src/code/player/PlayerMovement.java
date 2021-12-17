@@ -69,7 +69,6 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
         else if (binding.equals("Jump") && PlayerBody.isOnGround()) {
             if (isPressed) {
                 PlayerBody.jump();
-                System.out.println(PlayerBody.getPhysicsLocation().toString());
             }
         }
     }

@@ -1,5 +1,6 @@
 package code.screens;
 
+import code.environment.ChunkLoader;
 import code.environment.DefaultChunkLoader;
 import code.player.PlayerBody;
 import code.player.PlayerMovement;
@@ -21,11 +22,11 @@ public class MainScreenInit extends AbstractAppState {
         this.app.setDisplayStatView(false);
 
         PlayerMovement movement = new PlayerMovement();
-        DefaultChunkLoader defaultChunkLoader = new DefaultChunkLoader();
+        ChunkLoader chunkLoader = new ChunkLoader();
 
         player.initialize(this.app.getRootNode());
         stateManager.attach(movement);
-        stateManager.attach(defaultChunkLoader);
+        stateManager.attach(chunkLoader);
     }
 
     public Object getPlayer() {

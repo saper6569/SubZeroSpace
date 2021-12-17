@@ -24,8 +24,9 @@ public class DefaultChunkLoader extends AbstractAppState {
         super.initialize(stateManager, app);
         this.app = (SimpleApplication) app;
 
-        map = this.app.getAssetManager().loadModel("Models/hallway.gltf");
-        map.setLocalScale(2.5f);
+        map = this.app.getAssetManager().loadModel("Models/Chunks1-5/1.gltf");
+        map.center();
+        map.setLocalScale(3f);
         this.app.getRootNode().attachChild(map);
 
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(map);

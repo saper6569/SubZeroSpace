@@ -14,7 +14,7 @@ public class PlayerBody {
         player = new CharacterControl(capsuleShape, 0.05f);
 
         player.setJumpSpeed(15);
-        player.setFallSpeed(10);
+        player.setFallSpeed(15);
         player.setGravity(30);
         player.setPhysicsLocation(new Vector3f(0, 5, 0));
     }
