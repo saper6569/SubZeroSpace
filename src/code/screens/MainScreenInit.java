@@ -21,6 +21,7 @@ public class MainScreenInit extends AbstractAppState {
         this.app = (SimpleApplication) app;
         this.app.setDisplayStatView(false);
 
+        //attaching app states and game objects
         PlayerMovement movement = new PlayerMovement();
         ChunkLoader chunkLoader = new ChunkLoader();
 

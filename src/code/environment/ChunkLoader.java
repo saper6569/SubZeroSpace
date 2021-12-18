@@ -32,10 +32,9 @@ public class ChunkLoader extends AbstractAppState {
         super.initialize(stateManager, app);
         this.app = (SimpleApplication) app;
 
-
-
         BulletAppState bulletAppState = new BulletAppState();
 
+        //chunks are loaded, manipulated and attached to the root node
         try {
             for (int i = FileHandler.getLines(Variables.SAVE_DATA); i > 0; i--) {
                 try {
@@ -77,6 +76,7 @@ public class ChunkLoader extends AbstractAppState {
         }
     }
 
+    //assigns chunk manipulation variables
     public void loadChunk(String instruction) {
         ArrayList<String> xCoordinate = new ArrayList<>();
         ArrayList<String> zCoordinate = new ArrayList<>();

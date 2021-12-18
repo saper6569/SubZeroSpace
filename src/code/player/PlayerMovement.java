@@ -31,6 +31,8 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
 
         setUpKeys();
 
+        //attaching spotlight to the player
+        //remove once lighting is added to the map
         torch.setSpotRange(100f);
         torch.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD);
         torch.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD);

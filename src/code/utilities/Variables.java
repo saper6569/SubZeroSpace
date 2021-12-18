@@ -2,9 +2,9 @@ package code.utilities;
 
 public class Variables {
 
-    public String NAME = "Sub Zero Space";
-    public String REALEASE_VERSION = "1.0";
-    public String CREATOR = "Playper3";
+    public static String NAME = "Sub Zero Space";
+    public static String REALEASE_VERSION = "1.0";
+    public static String CREATOR = "Playper3";
 
     private String PLAYER_DATA;
 

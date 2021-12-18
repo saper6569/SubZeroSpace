@@ -16,12 +16,12 @@ public class Lighting {
 
     public static SpotLight setupLight(Camera cam) {
         SpotLight spot = new SpotLight();
-        spot.setSpotRange(100f);                           // distance
-        spot.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD); // inner light cone (central beam)
-        spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD); // outer light cone (edge of the light)
-        spot.setColor(ColorRGBA.White.mult(1.3f));         // light color
-        spot.setPosition(cam.getLocation());               // shine from camera loc
-        spot.setDirection(cam.getDirection());             // shine forward from camera loc
+        spot.setSpotRange(100f);
+        spot.setSpotInnerAngle(15f * FastMath.DEG_TO_RAD);
+        spot.setSpotOuterAngle(35f * FastMath.DEG_TO_RAD);
+        spot.setColor(ColorRGBA.White.mult(1.3f));
+        spot.setPosition(cam.getLocation());
+        spot.setDirection(cam.getDirection());
         return spot;
     }
 }
