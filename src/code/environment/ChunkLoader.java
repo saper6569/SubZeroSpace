@@ -1,5 +1,12 @@
 package code.environment;
 
+/**
+ * @author Playper3 on 2021-12-23.
+ * @project SubZeroSpace
+ * @pakage environment
+ */
+
+import code.player.PlayerBody;
 import code.screens.MainScreenInit;
 import code.utilities.FileHandler;
 import code.utilities.Variables;
@@ -67,13 +74,13 @@ public class ChunkLoader extends AbstractAppState {
 
                 stateManager.attach(bulletAppState);
                 bulletAppState.getPhysicsSpace().add(chunkBody);
-                bulletAppState.getPhysicsSpace().add(mainScreen.getPlayer());
 
                 this.app.getRootNode().attachChild(chunk);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        bulletAppState.getPhysicsSpace().add(PlayerBody.getPlayer());
     }
 
     //assigns chunk manipulation variables

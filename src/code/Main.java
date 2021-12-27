@@ -1,5 +1,11 @@
 package code;
 
+/**
+ * @author Playper3 on 2021-12-23.
+ * @project SubZeroSpace
+ * @pakage code
+ */
+
 import code.screens.MainScreenInit;
 import code.utilities.Variables;
 import com.jme3.app.SimpleApplication;

@@ -1,5 +1,11 @@
 package code.utilities;
 
+/**
+ * @author Playper3 on 2021-12-23.
+ * @project SubZeroSpace
+ * @pakage utilities
+ */
+
 public class Variables {
 
     public static String NAME = "Sub Zero Space";

@@ -1,5 +1,11 @@
 package code.environment;
 
+/**
+ * @author Playper3 on 2021-12-23.
+ * @project SubZeroSpace
+ * @pakage environment
+ */
+
 import com.jme3.light.AmbientLight;
 import com.jme3.light.SpotLight;
 import com.jme3.math.ColorRGBA;
@@ -23,5 +29,9 @@ public class Lighting {
         spot.setPosition(cam.getLocation());
         spot.setDirection(cam.getDirection());
         return spot;
+    }
+
+    public static void LoadLight() {
+
     }
 }

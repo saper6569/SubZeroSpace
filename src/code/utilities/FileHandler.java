@@ -1,7 +1,12 @@
 package code.utilities;
 
-import code.environment.ChunkLoader;
+/**
+ * @author Playper3 on 2021-12-23.
+ * @project SubZeroSpace
+ * @pakage utilities
+ */
 
+import code.environment.ChunkLoader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

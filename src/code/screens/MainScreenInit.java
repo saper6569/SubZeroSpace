@@ -1,13 +1,19 @@
 package code.screens;
 
+/**
+ * @author Playper3 on 2021-12-23.
+ * @project SubZeroSpace
+ * @pakage screens
+ */
+
 import code.environment.ChunkLoader;
-import code.environment.DefaultChunkLoader;
 import code.player.PlayerBody;
 import code.player.PlayerMovement;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.light.Light;
 
 
 public class MainScreenInit extends AbstractAppState {
@@ -25,12 +31,16 @@ public class MainScreenInit extends AbstractAppState {
         PlayerMovement movement = new PlayerMovement();
         ChunkLoader chunkLoader = new ChunkLoader();
 
-        player.initialize(this.app.getRootNode());
+        stateManager.attach(player);
         stateManager.attach(movement);
         stateManager.attach(chunkLoader);
     }
 
     public Object getPlayer() {
         return player.getPlayer();
+    }
+
+    public void attachLight(Light light) {
+        this.app.getRootNode().addLight(light);
     }
 }
