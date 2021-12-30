@@ -19,6 +19,7 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.math.FastMath;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 import java.io.FileNotFoundException;
@@ -33,6 +34,7 @@ public class ChunkLoader extends AbstractAppState {
     private static String CHUNK_ID;
     private static int xTranslation, zTranslation;
     private static char rotation;
+    private static Node map;
 
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -40,6 +42,8 @@ public class ChunkLoader extends AbstractAppState {
         this.app = (SimpleApplication) app;
 
         BulletAppState bulletAppState = new BulletAppState();
+        map = new Node();
+
 
         //chunks are loaded, manipulated and attached to the root node
         try {
@@ -75,11 +79,12 @@ public class ChunkLoader extends AbstractAppState {
                 stateManager.attach(bulletAppState);
                 bulletAppState.getPhysicsSpace().add(chunkBody);
 
-                this.app.getRootNode().attachChild(chunk);
+                map.attachChild(chunk);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        this.app.getRootNode().attachChild(map);
         bulletAppState.getPhysicsSpace().add(PlayerBody.getPlayer());
     }
 
@@ -100,5 +105,9 @@ public class ChunkLoader extends AbstractAppState {
         zTranslation = Integer.parseInt(String.join("", zCoordinate));
         CHUNK_ID = String.valueOf(instruction.charAt(0));
         rotation = instruction.charAt(7);
+    }
+
+    public Spatial getMap() {
+        return map;
     }
 }

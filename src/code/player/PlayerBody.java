@@ -13,14 +13,13 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 public class PlayerBody extends AbstractAppState {
 
     private static CharacterControl player;
     private SimpleApplication app;
-    private static Spatial gun;
+    private static Spatial hand;
 
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -32,11 +31,18 @@ public class PlayerBody extends AbstractAppState {
         player.setJumpSpeed(15);
         player.setFallSpeed(15);
         player.setGravity(30);
+
+        updateHand("gun");
+        hand.addControl(player);
+        hand.setLocalScale(3);
+        hand.setLocalTranslation(player.getPhysicsLocation());
+        this.app.getRootNode().attachChild(hand);
+
         player.setPhysicsLocation(new Vector3f(0, 5, 0));
-        gun = this.app.getAssetManager().loadModel("Models/gun.gltf");
-        gun.setLocalScale(3);
-        gun.setLocalTranslation(player.getPhysicsLocation());
-        this.app.getRootNode().attachChild(gun);
+    }
+
+    private void updateHand(String item) {
+        hand = this.app.getAssetManager().loadModel("Models/" + item + ".gltf");
     }
 
     public static CharacterControl getPlayer() {
@@ -45,7 +51,7 @@ public class PlayerBody extends AbstractAppState {
 
     @Override
     public void update(float tpf) {
-        gun.lookAt(player.getPhysicsLocation(), this.app.getCamera().getUp());
+        player.setViewDirection(this.app.getCamera().getDirection().multLocal(-1));
     }
 
     public static void jump() {
