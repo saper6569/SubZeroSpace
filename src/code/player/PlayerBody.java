@@ -10,6 +10,7 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
@@ -32,7 +33,7 @@ public class PlayerBody extends AbstractAppState {
         player.setFallSpeed(15);
         player.setGravity(30);
 
-        updateHand("gun");
+        updateHand("gun_default", this.app.getAssetManager());
         hand.addControl(player);
         hand.setLocalScale(3);
         hand.setLocalTranslation(player.getPhysicsLocation());
@@ -41,8 +42,8 @@ public class PlayerBody extends AbstractAppState {
         player.setPhysicsLocation(new Vector3f(0, 5, 0));
     }
 
-    private void updateHand(String item) {
-        hand = this.app.getAssetManager().loadModel("Models/" + item + ".gltf");
+    public static void updateHand(String item, AssetManager assetManager) {
+        hand = assetManager.loadModel("Models/" + item + ".gltf");
     }
 
     public static CharacterControl getPlayer() {
