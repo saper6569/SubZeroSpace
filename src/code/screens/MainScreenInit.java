@@ -9,6 +9,8 @@ package code.screens;
 import code.environment.ChunkLoader;
 import code.player.PlayerBody;
 import code.player.PlayerMovement;
+import code.utilities.Picking;
+import code.utilities.SoundHandler;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -30,10 +32,14 @@ public class MainScreenInit extends AbstractAppState {
         //attaching app states and game objects
         PlayerMovement movement = new PlayerMovement();
         ChunkLoader chunkLoader = new ChunkLoader();
+        Picking picker = new Picking();
+        SoundHandler sound = new SoundHandler();
 
         stateManager.attach(player);
         stateManager.attach(movement);
         stateManager.attach(chunkLoader);
+        stateManager.attach(picker);
+        stateManager.attach(sound);
     }
 
     public Object getPlayer() {

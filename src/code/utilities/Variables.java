@@ -15,5 +15,5 @@ public class Variables {
     private String PLAYER_DATA;
 
     public static String SAVE_DATA = "Assets/Saves/CHUNK_INFO.txt";
-
+    public static float VOLUME = 0.5f;
 }

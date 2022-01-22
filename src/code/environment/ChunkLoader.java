@@ -84,7 +84,6 @@ public class ChunkLoader extends AbstractAppState {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        this.app.getRootNode().attachChild(map);
         bulletAppState.getPhysicsSpace().add(PlayerBody.getPlayer());
     }
 
