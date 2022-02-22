@@ -45,7 +45,7 @@ public class ChunkLoader extends AbstractAppState {
         map = new Node();
 
 
-        //chunks are loaded, manipulated and attached to the root node
+        //chunks are loaded, moved and attached to the root node
         try {
             for (int i = FileHandler.getLines(Variables.SAVE_DATA); i > 0; i--) {
                 try {
@@ -53,9 +53,9 @@ public class ChunkLoader extends AbstractAppState {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Spatial chunk = this.app.getAssetManager().loadModel("Models/Chunks1-5/" + CHUNK_ID + ".gltf");
-                chunk.setLocalScale(3f);
-                chunk.setLocalTranslation(xTranslation * 3, 0, zTranslation * 3);
+                Spatial chunk = this.app.getAssetManager().loadModel("Models/Chunks1-8/" + CHUNK_ID + ".glb");
+                chunk.setLocalScale(2f);
+                chunk.setLocalTranslation(xTranslation * 20, 0, zTranslation * 20);
 
                 switch (rotation) {
                     case '1':

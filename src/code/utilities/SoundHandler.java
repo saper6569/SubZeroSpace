@@ -23,9 +23,10 @@ public class SoundHandler extends AbstractAppState {
         super.initialize(stateManager, app);
         this.app = (SimpleApplication) app;
 
-        walkingFX = new AudioNode(this.app.getAssetManager(), "Sounds/effects/walking sounds.wav", AudioData.DataType.Buffer);
+        walkingFX = new AudioNode(this.app.getAssetManager(), "Sounds/effects/footsteps.wav", AudioData.DataType.Buffer);
         walkingFX.setLooping(true);
         walkingFX.setPositional(false);
+        walkingFX.setVolume(0.5f);
         laserFX = new AudioNode(this.app.getAssetManager(), "Sounds/effects/laser.wav", AudioData.DataType.Buffer);
         laserFX.setPositional(false);
         OST1 = new AudioNode(this.app.getAssetManager(), "Sounds/OST v.1/Ambient Symphony.ogg", AudioData.DataType.Stream);
@@ -60,7 +61,7 @@ public class SoundHandler extends AbstractAppState {
     @Override
     public void update(float tpf) {
         time += tpf;
-        if (time > 20 && !isPlaying()) {
+        if (time > 500 && !isPlaying()) {
             int trackNum = (int)(Math.random() * ((5 - 1) + 1)) + 1;
             System.out.println(trackNum);
             if (trackNum == 1) {

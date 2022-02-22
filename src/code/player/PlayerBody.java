@@ -33,7 +33,7 @@ public class PlayerBody extends AbstractAppState {
         player.setFallSpeed(15);
         player.setGravity(30);
 
-        updateHand("gun_default", this.app.getAssetManager());
+        updateHand("gun_aiming", this.app.getAssetManager());
         hand.addControl(player);
         hand.setLocalScale(3);
         hand.setLocalTranslation(player.getPhysicsLocation());

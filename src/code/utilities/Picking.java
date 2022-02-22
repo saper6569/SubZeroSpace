@@ -15,6 +15,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
@@ -32,7 +33,7 @@ public class Picking extends AbstractAppState implements ActionListener {
     private ChunkLoader chunkLoader;
     private static ParticleEmitter effect;
     private CollisionResults results;
-    private static float time;
+    private float time;
     private SoundHandler FX = new SoundHandler();
 
     @Override
@@ -50,19 +51,23 @@ public class Picking extends AbstractAppState implements ActionListener {
         effect = new ParticleEmitter("Debris", ParticleMesh.Type.Triangle, 10);
         Material effect_mat = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Particle.j3md");
         effect_mat.setTexture("Texture", this.app.getAssetManager().loadTexture("Effects/debris.png"));
-
         effect.setMaterial(effect_mat);
+        effect.setSelectRandomImage(true);
+        effect.setRandomAngle(true);
+        effect.setRotateSpeed(FastMath.TWO_PI * 4);
+        effect.setStartColor(new ColorRGBA(ColorRGBA.Gray));
+        effect.setEndColor(new ColorRGBA(ColorRGBA.DarkGray));
+        effect.setStartSize(.2f);
+        effect.setEndSize(.2f);
+
+        effect.setParticlesPerSec(0);
+        effect.setGravity(0, 12f, 0);
+        effect.setLowLife(1.4f);
+        effect.setHighLife(1.5f);
+        effect.getParticleInfluencer().setInitialVelocity(new Vector3f(0, 15, 0));
+        effect.getParticleInfluencer().setVelocityVariation(.60f);
         effect.setImagesX(3);
         effect.setImagesY(3);
-        effect.setRotateSpeed(6);
-        effect.setSelectRandomImage(true);
-        effect.setNumParticles(20);
-        effect.setLowLife(0.3f);
-        effect.setHighLife(0.8f);
-        effect.getParticleInfluencer().setInitialVelocity(new Vector3f(0, 4, 0));
-        effect.setStartColor(ColorRGBA.Gray);
-        effect.setGravity(0, 6, 0);
-        effect.getParticleInfluencer().setVelocityVariation(.60f);
         this.app.getRootNode().attachChild(effect);
     }
 
@@ -94,7 +99,7 @@ public class Picking extends AbstractAppState implements ActionListener {
     public void update(float tpf) {
         time = tpf + time;
 
-        if (time < 1) {
+        if (time > 1) {
             effect.killAllParticles();
             time = 0;
         }

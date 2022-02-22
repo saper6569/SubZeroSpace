@@ -110,6 +110,9 @@ public class PlayerMovement extends AbstractAppState implements ActionListener {
         if (walkDirection.getX() == 0 && walkDirection.getY() == 0 && walkDirection.getZ() == 0) {
             FX.stopWalking();
         }
+        else if (!PlayerBody.isOnGround()) {
+            FX.stopWalking();
+        }
         else {
             FX.walking();
         }

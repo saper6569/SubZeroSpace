@@ -9,6 +9,7 @@ package code.screens;
 import code.environment.ChunkLoader;
 import code.player.PlayerBody;
 import code.player.PlayerMovement;
+import code.player.PlayerUpdate;
 import code.utilities.Picking;
 import code.utilities.SoundHandler;
 import com.jme3.app.Application;
@@ -30,16 +31,22 @@ public class MainScreenInit extends AbstractAppState {
         this.app.setDisplayStatView(false);
 
         //attaching app states and game objects
+        Camera camera = new Camera();
         PlayerMovement movement = new PlayerMovement();
         ChunkLoader chunkLoader = new ChunkLoader();
         Picking picker = new Picking();
         SoundHandler sound = new SoundHandler();
+        PlayerUpdate playerUpdate = new PlayerUpdate();
+        Gui gui = new Gui();
 
+        stateManager.attach(camera);
         stateManager.attach(player);
         stateManager.attach(movement);
         stateManager.attach(chunkLoader);
         stateManager.attach(picker);
         stateManager.attach(sound);
+        stateManager.attach(playerUpdate);
+        stateManager.attach(gui);
     }
 
     public Object getPlayer() {

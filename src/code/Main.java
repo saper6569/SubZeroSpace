@@ -19,7 +19,7 @@ public class Main extends SimpleApplication {
     public static void main(String[] args) {
         AppSettings settings = new AppSettings(true);
         settings.setTitle(Variables.NAME + " " + Variables.REALEASE_VERSION);
-        settings.setResolution(640,480);
+        settings.setResolution(1000,700);
 
         Main app = new Main();
         app.setSettings(settings);
@@ -31,6 +31,5 @@ public class Main extends SimpleApplication {
     public void simpleInitApp() {
         stateManager.attach(mainScreenSetup);
         viewPort.setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 1f));
-        flyCam.setMoveSpeed(100);
     }
 }
