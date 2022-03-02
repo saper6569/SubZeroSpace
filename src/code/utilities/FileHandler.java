@@ -46,4 +46,18 @@ public class FileHandler {
         }
         return lines;
     }
+
+    public static void setPlayerStats(String fileName, float HUNGER, float HYDRATION, float HEALTH, String NAME) throws FileNotFoundException {
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        NAME = scanner.nextLine();
+        HEALTH = Float.parseFloat(scanner.nextLine());
+        HUNGER = Float.parseFloat(scanner.nextLine());
+        HYDRATION = Float.parseFloat(scanner.nextLine());
+    }
+
+    public static void writeLog(String fileName) throws IOException {
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+    }
 }

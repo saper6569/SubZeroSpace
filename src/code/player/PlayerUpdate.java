@@ -1,11 +1,16 @@
 package code.player;
 
+import code.utilities.FileHandler;
 import code.utilities.GameObject;
+import code.utilities.Variables;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector3f;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * @author Playper3 on 2022-01-23.
@@ -28,6 +33,12 @@ public class PlayerUpdate extends AbstractAppState {
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
         this.app = (SimpleApplication) app;
+
+        try {
+            FileHandler.setPlayerStats(Variables.PLAYER_DATA, HUNGER, HYDRATION, HEALTH, NAME);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -35,19 +46,19 @@ public class PlayerUpdate extends AbstractAppState {
         time += tpf;
     }
 
-    public void updateHunger() {
-
+    public static void updateHunger(int increment) {
+        HUNGER += increment;
     }
 
-    public void updateHydration() {
-
+    public static void updateHydration(int increment) {
+        HYDRATION += increment;
     }
 
-    public void updateHealth() {
-
+    public static void updateHealth(int increment) {
+        HEALTH += increment;
     }
 
-    private void AutoSave() {
-
+    private static void AutoSave() throws IOException {
+        FileHandler.writeLog(Variables.PLAYER_DATA);
     }
 }
