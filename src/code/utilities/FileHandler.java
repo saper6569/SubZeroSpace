@@ -9,6 +9,7 @@ package code.utilities;
 import code.environment.ChunkLoader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -56,8 +57,10 @@ public class FileHandler {
         HYDRATION = Float.parseFloat(scanner.nextLine());
     }
 
-    public static void writeLog(String fileName) throws IOException {
+    public static void writeLog(String fileName, String logInfo) throws IOException {
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
+        FileWriter writer = new FileWriter(file);
+        writer.write(logInfo);
     }
 }

@@ -59,6 +59,6 @@ public class PlayerUpdate extends AbstractAppState {
     }
 
     private static void AutoSave() throws IOException {
-        FileHandler.writeLog(Variables.PLAYER_DATA);
+        FileHandler.writeLog(Variables.PLAYER_DATA, NAME + " " + HEALTH + " " + HUNGER + " " + HYDRATION + " " + LOCATION);
     }
 }
